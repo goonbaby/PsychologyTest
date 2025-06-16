@@ -1,0 +1,1528 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔮 Deep Psychology Test</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 25%, #16213e 50%, #0f0f0f 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Dark mysterious background */
+        .bg-mystery {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+        }
+        
+        .mystery-particle {
+            position: absolute;
+            background: radial-gradient(circle, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            filter: blur(2px);
+            animation: mysteryFloat 12s ease-in-out infinite;
+        }
+        
+        @keyframes mysteryFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            25% { transform: translateY(-50px) rotate(90deg); opacity: 0.7; }
+            50% { transform: translateY(-100px) rotate(180deg); opacity: 0.5; }
+            75% { transform: translateY(-30px) rotate(270deg); opacity: 0.8; }
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: darkReveal 2s ease-out;
+        }
+        
+        @keyframes darkReveal {
+            from { opacity: 0; transform: translateY(-50px) scale(0.8); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #ffd93d, #6c5ce7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(255,107,107,0.5);
+            letter-spacing: 2px;
+        }
+        
+        .header p {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            font-weight: 300;
+            margin-bottom: 15px;
+            color: #e0e0e0;
+        }
+        
+        .warning-text {
+            font-size: 1rem;
+            color: #ff6b6b;
+            background: rgba(255,107,107,0.1);
+            border: 1px solid rgba(255,107,107,0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 600px;
+            font-weight: 500;
+        }
+        
+        .main-card {
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(30px);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.1);
+            animation: cardEmerge 2s ease-out 0.5s both;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .main-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #ffd93d, #6c5ce7, #ff6b6b);
+            background-size: 200% 100%;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 0%; }
+            50% { background-position: 100% 0%; }
+        }
+        
+        @keyframes cardEmerge {
+            from { opacity: 0; transform: translateY(100px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        
+        /* Start Screen */
+        .start-section {
+            text-align: center;
+        }
+        
+        .start-icon {
+            font-size: 8rem;
+            margin-bottom: 40px;
+            animation: pulseGlow 3s infinite;
+            filter: drop-shadow(0 0 20px rgba(255,107,107,0.5));
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(255,107,107,0.5)); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 40px rgba(78,205,196,0.7)); }
+        }
+        
+        .start-text {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+            color: #ffd93d;
+        }
+        
+        .start-description {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 50px;
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+        
+        .intensity-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .intensity-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .intensity-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .intensity-card.selected {
+            border-color: #ff6b6b;
+            background: rgba(255,107,107,0.1);
+            box-shadow: 0 0 30px rgba(255,107,107,0.3);
+        }
+        
+        .intensity-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #ffd93d;
+        }
+        
+        .intensity-desc {
+            font-size: 1rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            padding: 20px 50px;
+            border: none;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-family: 'Kanit', sans-serif;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+            transform: translate(-50%, -50%);
+        }
+        
+        .btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+        
+        .btn-danger {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            box-shadow: 0 15px 35px rgba(255,107,107,0.4);
+            border: 2px solid rgba(255,107,107,0.3);
+        }
+        
+        .btn-danger:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(255,107,107,0.6);
+        }
+        
+        /* Quiz Section */
+        .quiz-section {
+            display: none;
+        }
+        
+        .progress-container {
+            background: rgba(0,0,0,0.6);
+            border-radius: 30px;
+            height: 15px;
+            margin-bottom: 40px;
+            overflow: hidden;
+            box-shadow: inset 0 5px 15px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 30px;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow: 0 0 20px rgba(255,107,107,0.5);
+            width: 0%;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            opacity: 0.8;
+            font-weight: 500;
+        }
+        
+        .question-card {
+            background: rgba(0,0,0,0.6);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            animation: questionDarkSlide 0.8s ease-out;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        
+        @keyframes questionDarkSlide {
+            from { opacity: 0; transform: translateX(100px) rotateY(20deg); }
+            to { opacity: 1; transform: translateX(0) rotateY(0deg); }
+        }
+        
+        .question-category {
+            font-size: 1rem;
+            opacity: 0.7;
+            margin-bottom: 15px;
+            color: #4ecdc4;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .question-number {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 20px;
+            color: #ffd93d;
+            font-weight: 600;
+        }
+        
+        .question-text {
+            font-size: 1.6rem;
+            font-weight: 500;
+            margin-bottom: 35px;
+            line-height: 1.6;
+            color: #ffffff;
+        }
+        
+        .answers-grid {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .answer-option {
+            background: rgba(255,255,255,0.03);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-size: 1.2rem;
+            font-weight: 400;
+            position: relative;
+            overflow: hidden;
+            color: #e0e0e0;
+        }
+        
+        .answer-option:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: #4ecdc4;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            color: #ffffff;
+        }
+        
+        .answer-option.selected {
+            background: linear-gradient(135deg, rgba(255,107,107,0.2), rgba(78,205,196,0.2));
+            border-color: #ff6b6b;
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(255,107,107,0.3);
+            color: #ffffff;
+        }
+        
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(45deg, #6c757d, #495057);
+            color: white;
+            box-shadow: 0 10px 30px rgba(108,117,125,0.4);
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(108,117,125,0.6);
+        }
+        
+        .btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        /* Results Section */
+        .results-section {
+            display: none;
+            animation: resultsReveal 1.5s ease-out;
+        }
+        
+        @keyframes resultsReveal {
+            from { opacity: 0; transform: scale(0.8) rotateX(20deg); }
+            to { opacity: 1; transform: scale(1) rotateX(0deg); }
+        }
+        
+        .archetype-card {
+            background: rgba(0,0,0,0.8);
+            border: 3px solid rgba(255,255,255,0.1);
+            border-radius: 30px;
+            padding: 50px;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+        
+        .archetype-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #ffd93d, #6c5ce7);
+        }
+        
+        .archetype-icon {
+            font-size: 6rem;
+            margin-bottom: 30px;
+            animation: iconFloat 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255,107,107,0.5));
+        }
+        
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(5deg); }
+            50% { transform: translateY(-20px) rotate(0deg); }
+            75% { transform: translateY(-10px) rotate(-5deg); }
+        }
+        
+        .archetype-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .archetype-subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            font-weight: 400;
+            color: #ffd93d;
+        }
+        
+        .archetype-description {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            opacity: 0.9;
+            color: #e0e0e0;
+        }
+        
+        .psychological-analysis {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .analysis-card {
+            background: rgba(0,0,0,0.6);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 25px;
+            padding: 30px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .analysis-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        }
+        
+        .analysis-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            background: rgba(0,0,0,0.8);
+            border-color: rgba(255,255,255,0.2);
+        }
+        
+        .analysis-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #ffd93d;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .analysis-content {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            opacity: 0.9;
+            color: #e0e0e0;
+        }
+        
+        .restart-section {
+            background: rgba(255,107,107,0.1);
+            border: 2px solid rgba(255,107,107,0.3);
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .disclaimer {
+            background: linear-gradient(45deg, rgba(255,193,7,0.1), rgba(255,107,107,0.1));
+            border: 2px solid rgba(255,193,7,0.3);
+            border-radius: 25px;
+            padding: 30px;
+            margin-top: 50px;
+            text-align: center;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        
+        .disclaimer-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #ffd93d;
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 15px; }
+            .main-card { padding: 30px; }
+            .header h1 { font-size: 2.5rem; }
+            .intensity-levels { grid-template-columns: 1fr; }
+            .psychological-analysis { grid-template-columns: 1fr; gap: 25px; }
+            .btn { padding: 15px 35px; font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-mystery" id="bgMystery"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>🔮 Deep Psychology Test</h1>
+            <p>เจาะลึกสู่ใจกลางของจิตใต้สำนึกและตัวตนที่แท้จริง</p>
+            <div class="warning-text">
+                ⚠️ การทดสอบนี้จะเปิดเผยความจริงที่อาจไม่เคยรู้มาก่อน<br>
+                อ้างอิงตามหลักจิตวิทยาเชิงลึก และทฤษฎี Jungian Archetypes
+            </div>
+        </div>
+        
+        <div class="main-card">
+            <!-- Start Section -->
+            <div class="start-section" id="startSection">
+                <div class="start-icon">🔮</div>
+                <div class="start-text">พร้อมที่จะเผชิญหน้ากับความจริงของตัวเองหรือไม่?</div>
+                <div class="start-description">
+                    แบบทดสอบนี้จะนำคุณเจาะลึกไปสู่จิตใต้สำนึก เพื่อค้นหา <strong>Psychological Archetype</strong> ที่แท้จริงของคุณ
+                    <br><br>
+                    ผ่านคำถาม 15 ข้อที่ออกแบบมาเพื่อเปิดเผย:<br>
+                    • รูปแบบความคิดที่ซ่อนลึก<br>
+                    • แรงขับเคลื่อนภายใน<br>
+                    • ความกลัวและความต้องการลับ<br>
+                    • พฤติกรรมในสถานการณ์ขั้นวิกฤต
+                </div>
+                
+                <div class="intensity-levels">
+                    <div class="intensity-card" data-level="normal">
+                        <div class="intensity-title">🌙 การทดสอบปกติ</div>
+                        <div class="intensity-desc">คำถามระดับพื้นฐาน เหมาะสำหรับผู้เริ่มต้น</div>
+                    </div>
+                    <div class="intensity-card" data-level="deep">
+                        <div class="intensity-title">🔥 การทดสอบเชิงลึก</div>
+                        <div class="intensity-desc">คำถามที่ท้าทายและเจาะลึกมากขึ้น เปิดเผยความจริงที่ซ่อนลึก</div>
+                    </div>
+                    <div class="intensity-card" data-level="extreme">
+                        <div class="intensity-title">⚡ การทดสอบสุดขั้ว</div>
+                        <div class="intensity-desc">คำถามระดับสูงสุด สำหรับผู้ที่พร้อมเผชิญหน้ากับความจริงอันโหดร้าย</div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-danger" id="startTestBtn" disabled>🚀 เริ่มการเจาะลึกจิตใจ</button>
+            </div>
+            
+            <!-- Quiz Section -->
+            <div class="quiz-section" id="quizSection">
+                <div class="progress-text" id="progressText">การเจาะลึก 1 จาก 15</div>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                
+                <div class="question-card" id="questionCard">
+                    <div class="question-category" id="questionCategory">จิตวิทยาเชิงลึก</div>
+                    <div class="question-number" id="questionNumber">การเจาะลึกที่ 1</div>
+                    <div class="question-text" id="questionText">กำลังโหลดการทดสอบ...</div>
+                    <div class="answers-grid" id="answersGrid">
+                        <!-- Answers will be populated here -->
+                    </div>
+                </div>
+                
+                <div class="quiz-navigation">
+                    <button class="btn btn-secondary" id="prevBtn" disabled>← ย้อนกลับ</button>
+                    <button class="btn btn-danger" id="nextBtn" disabled>ลึกต่อไป →</button>
+                </div>
+            </div>
+            
+            <!-- Results Section -->
+            <div class="results-section" id="resultsSection">
+                <div class="archetype-card">
+                    <div class="archetype-icon" id="archetypeIcon">🔮</div>
+                    <div class="archetype-title" id="archetypeTitle">กำลังวิเคราะห์...</div>
+                    <div class="archetype-subtitle" id="archetypeSubtitle">กำลังเจาะลึกจิตใต้สำนึก...</div>
+                    <div class="archetype-description" id="archetypeDescription">กำลังประมวลผลข้อมูลทางจิตวิทยา...</div>
+                </div>
+                
+                <div class="psychological-analysis" id="analysisGrid">
+                    <!-- Analysis will be populated here -->
+                </div>
+                
+                <div class="restart-section">
+                    <h3 style="color: #ffd93d; margin-bottom: 20px;">🔄 ต้องการเจาะลึกในระดับอื่นไหม?</h3>
+                    <button class="btn btn-danger" id="retakeBtn">🔮 ทดสอบใหม่</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="disclaimer">
+            <div class="disclaimer-title">🧠 เกี่ยวกับการทดสอบเชิงลึกนี้</div>
+            <p>แบบทดสอบนี้พัฒนาจากทฤษฎีจิตวิทยาเชิงลึกของ Carl Jung, Freud และนักจิตวิทยาสมัยใหม่ 
+            เพื่อเปิดเผยรูปแบบจิตใต้สำนึกและ Archetypal patterns ที่ซ่อนลึกในตัวคุณ 
+            ผลลัพธ์มีความแม่นยำสูง แต่ควรใช้เป็นเครื่องมือสำหรับการทำความเข้าใจตนเองเท่านั้น</p>
+        </div>
+    </div>
+
+
+    <script>
+        // Create mysterious background
+        function createMysteriousParticles() {
+            const bgMystery = document.getElementById('bgMystery');
+            for (let i = 0; i < 40; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'mystery-particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 8 + 3 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDelay = Math.random() * 12 + 's';
+                particle.style.animationDuration = (Math.random() * 8 + 8) + 's';
+                bgMystery.appendChild(particle);
+            }
+        }
+        
+        // Deep Psychology Questions Database - 15 questions each level
+        const questionSets = {
+            normal: [
+                {
+                    category: "แรงขับเคลื่อนภายใน",
+                    text: "เมื่อคุณมีเวลาว่างคนเดียว คุณชอบทำอะไรมากที่สุด?",
+                    answers: [
+                        { text: "อ่านหนังสือ ดูสารคดี หรือเรียนรู้สิ่งใหม่", archetype: "sage", score: 3 },
+                        { text: "คิดหาไอเดียใหม่ๆ หรือวางแผนโครงการ", archetype: "magician", score: 3 },
+                        { text: "ติดต่อเพื่อนฝูง หรือวางแผนช่วยเหลือคนอื่น", archetype: "caregiver", score: 3 },
+                        { text: "ฟังเพลง ดูหนัง หรือทำกิจกรรมที่ทำให้ผ่อนคลาย", archetype: "lover", score: 2 }
+                    ]
+                },
+                {
+                    category: "การตัดสินใจ",
+                    text: "เมื่อต้องตัดสินใจเรื่องสำคัญ คุณพึ่งพาอะไรมากที่สุด?",
+                    answers: [
+                        { text: "ข้อมูล งานวิจัย และการวิเคราะห์อย่างละเอียด", archetype: "sage", score: 3 },
+                        { text: "สัญชาตญาณและความรู้สึกภายใน", archetype: "magician", score: 3 },
+                        { text: "คำแนะนำจากคนที่เชื่อถือและประสบการณ์ของคนอื่น", archetype: "caregiver", score: 2 },
+                        { text: "สิ่งที่จะทำให้คนที่รักมีความสุขมากที่สุด", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "ความสัมพันธ์",
+                    text: "ในกลุ่มเพื่อน คุณมักจะเป็นคนแบบไหน?",
+                    answers: [
+                        { text: "คนที่ให้คำแนะนำและอธิบายเรื่องต่างๆ", archetype: "sage", score: 3 },
+                        { text: "คนที่คิดกิจกรรมใหม่ๆ และชวนคนอื่นทำสิ่งน่าตื่นเต้น", archetype: "magician", score: 3 },
+                        { text: "คนที่คอยดูแลและช่วยเหลือเมื่อมีปัญหา", archetype: "caregiver", score: 3 },
+                        { text: "คนที่สร้างบรรยากาศอบอุ่นและใส่ใจความรู้สึกของทุกคน", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "การเผชิญปัญหา",
+                    text: "เมื่อเจอปัญหาใหญ่ คุณจะทำอย่างไรก่อน?",
+                    answers: [
+                        { text: "หาข้อมูลและศึกษาวิธีแก้ไขที่ดีที่สุด", archetype: "sage", score: 3 },
+                        { text: "คิดหาทางออกที่แปลกใหม่และสร้างสรรค์", archetype: "magician", score: 3 },
+                        { text: "ขอความช่วยเหลือจากคนรอบข้าง", archetype: "caregiver", score: 2 },
+                        { text: "คิดถึงผลกระทบที่จะเกิดกับคนที่รัก", archetype: "lover", score: 2 }
+                    ]
+                },
+                {
+                    category: "แรงบันดาลใจ",
+                    text: "อะไรทำให้คุณรู้สึกมีแรงบันดาลใจมากที่สุด?",
+                    answers: [
+                        { text: "การค้นพบความจริงหรือเข้าใจเรื่องใหม่ๆ", archetype: "sage", score: 3 },
+                        { text: "การสร้างสิ่งใหม่หรือเปลี่ยนแปลงสิ่งที่มีอยู่", archetype: "magician", score: 3 },
+                        { text: "การได้ช่วยเหลือและเห็นคนอื่นมีความสุข", archetype: "caregiver", score: 3 },
+                        { text: "การได้อยู่กับคนที่รักและสร้างความทรงจำดีๆ", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "ความกลัว",
+                    text: "คุณกลัวอะไรมากที่สุดในทางใจ?",
+                    answers: [
+                        { text: "การถูกหลอกหรือเชื่อในสิ่งที่ผิด", archetype: "sage", score: 3 },
+                        { text: "การไม่สามารถเปลี่ยนแปลงสิ่งที่ต้องการได้", archetype: "magician", score: 3 },
+                        { text: "การมองดูคนที่รักต้องเจ็บปวด", archetype: "caregiver", score: 3 },
+                        { text: "การถูกทอดทิ้งหรือไม่มีใครรัก", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "เป้าหมายชีวิต",
+                    text: "เป้าหมายสำคัญที่สุดในชีวิตของคุณคือ?",
+                    answers: [
+                        { text: "การเข้าใจความจริงของโลกและแบ่งปันให้คนอื่น", archetype: "sage", score: 3 },
+                        { text: "การสร้างสิ่งใหม่ที่ทำให้โลกดีขึ้น", archetype: "magician", score: 3 },
+                        { text: "การดูแลและปกป้องคนที่สำคัญ", archetype: "caregiver", score: 3 },
+                        { text: "การรักและถูกรักอย่างแท้จริง", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "การสื่อสาร",
+                    text: "เมื่อต้องอธิบายเรื่องสำคัญให้คนอื่นฟัง คุณจะ?",
+                    answers: [
+                        { text: "ใช้ข้อมูลและตัวอย่างที่ชัดเจน", archetype: "sage", score: 3 },
+                        { text: "เล่าด้วยเรื่องราวที่น่าสนใจ", archetype: "magician", score: 3 },
+                        { text: "พูดด้วยความเอาใจใส่และอ่อนโยน", archetype: "caregiver", score: 3 },
+                        { text: "แสดงความจริงใจและความรู้สึกของตัวเอง", archetype: "lover", score: 2 }
+                    ]
+                },
+                {
+                    category: "การเรียนรู้",
+                    text: "คุณเรียนรู้สิ่งใหม่ได้ดีที่สุดเมื่อไหร่?",
+                    answers: [
+                        { text: "ได้ศึกษาด้วยตัวเองอย่างเข้าใจลึกซึ้ง", archetype: "sage", score: 3 },
+                        { text: "ได้ลองทำจริงและทดลองเอง", archetype: "magician", score: 3 },
+                        { text: "มีครูหรือเพื่อนคอยช่วยอธิบาย", archetype: "caregiver", score: 2 },
+                        { text: "เรียนรู้กับคนที่รักหรือในบรรยากาศดีๆ", archetype: "lover", score: 2 }
+                    ]
+                },
+                {
+                    category: "ค่านิยม",
+                    text: "สิ่งใดสำคัญที่สุดสำหรับคุณ?",
+                    answers: [
+                        { text: "ความจริงและความรู้", archetype: "sage", score: 3 },
+                        { text: "การสร้างสรรค์และนวัตกรรม", archetype: "magician", score: 3 },
+                        { text: "ความเมตตาและการช่วยเหลือกัน", archetype: "caregiver", score: 3 },
+                        { text: "ความรักและความผูกพัน", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "การใช้เงิน",
+                    text: "หากได้เงินก้อนใหญ่ คุณจะทำอะไรก่อน?",
+                    answers: [
+                        { text: "ลงทุนในการศึกษาหรือซื้อหนังสือ", archetype: "sage", score: 2 },
+                        { text: "เริ่มธุรกิจหรือโครงการใหม่", archetype: "magician", score: 3 },
+                        { text: "ช่วยเหลือครอบครัวและเพื่อนฝูง", archetype: "caregiver", score: 3 },
+                        { text: "ใช้กับคนที่รักและสร้างความทรงจำดี", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "การทำงาน",
+                    text: "งานในฝันของคุณต้องมีลักษณะอย่างไร?",
+                    answers: [
+                        { text: "ให้ได้เรียนรู้และใช้ความรู้", archetype: "sage", score: 3 },
+                        { text: "ให้ได้สร้างสรรค์และเปลี่ยนแปลงสิ่งต่างๆ", archetype: "magician", score: 3 },
+                        { text: "ให้ได้ช่วยเหลือและพัฒนาคนอื่น", archetype: "caregiver", score: 3 },
+                        { text: "ให้ได้ทำงานกับคนที่ชอบในสิ่งที่รัก", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "เวลาเครียด",
+                    text: "เมื่อเครียดมาก คุณจะทำอะไรเพื่อปลอบใจตัวเอง?",
+                    answers: [
+                        { text: "อ่านหนังสือหรือหาความรู้ใหม่ๆ", archetype: "sage", score: 2 },
+                        { text: "ทำกิจกรรมที่สร้างสรรค์หรือออกกำลังกาย", archetype: "magician", score: 2 },
+                        { text: "คุยกับเพื่อนหรือคนที่เข้าใจ", archetype: "caregiver", score: 3 },
+                        { text: "อยู่กับคนที่รักหรือทำสิ่งที่ทำให้มีความสุข", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "ความสำเร็จ",
+                    text: "คุณจะรู้สึกภาคภูมิใจมากที่สุดเมื่อไหร่?",
+                    answers: [
+                        { text: "เมื่อเข้าใจหรือค้นพบสิ่งที่ซับซ้อน", archetype: "sage", score: 3 },
+                        { text: "เมื่อสร้างหรือเปลี่ยนแปลงสิ่งใหม่ได้สำเร็จ", archetype: "magician", score: 3 },
+                        { text: "เมื่อเห็นคนที่ช่วยเหลือมีชีวิตที่ดีขึ้น", archetype: "caregiver", score: 3 },
+                        { text: "เมื่อคนที่รักมีความสุขเพราะสิ่งที่ทำ", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "ปรัชญาชีวิต",
+                    text: "คุณเชื่อมากที่สุดว่าชีวิตคือ?",
+                    answers: [
+                        { text: "การเดินทางเพื่อแสวงหาความรู้และความจริง", archetype: "sage", score: 3 },
+                        { text: "การสร้างสรรค์และเปลี่ยนแปลงให้ดีขึ้น", archetype: "magician", score: 3 },
+                        { text: "การดูแลกันและกันในสังคม", archetype: "caregiver", score: 3 },
+                        { text: "การรักและการสร้างความสัมพันธ์ที่มีความหมาย", archetype: "lover", score: 3 }
+                    ]
+                }
+            ],
+            deep: [
+                {
+                    category: "จิตใต้สำนึก",
+                    text: "ในฝันหรือช่วงที่กำลังหลับ คุณมักจะฝันเห็นอะไร?",
+                    answers: [
+                        { text: "สถานที่แปลกใหม่ที่เต็มไปด้วยความรู้", archetype: "sage", score: 3 },
+                        { text: "การบินหรือมีพลังวิเศษ", archetype: "magician", score: 3 },
+                        { text: "ครอบครัวหรือคนที่รักในสถานการณ์ต่างๆ", archetype: "caregiver", score: 3 },
+                        { text: "ความรักหรือการพบเจอคนพิเศษ", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "ความลึกลับ",
+                    text: "สิ่งใดที่ทำให้คุณรู้สึกถูกดึงดูดอย่างลึกลับ?",
+                    answers: [
+                        { text: "ปริศนาและความลับของจักรวาล", archetype: "sage", score: 3 },
+                        { text: "สิ่งเหนือธรรมชาติและพลังที่มองไม่เห็น", archetype: "magician", score: 3 },
+                        { text: "เรื่องราวของผู้คนและชีวิตที่ซับซ้อน", archetype: "caregiver", score: 3 },
+                        { text: "ความงามและศิลปะที่สะเทือนใจ", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "ด้านมืด",
+                    text: "เมื่อโกรธมาก คุณมักจะคิดอย่างไร?",
+                    answers: [
+                        { text: "อยากพิสูจน์ว่าอีกฝ่ายผิดด้วยข้อมูลและเหตุผล", archetype: "sage", score: 3 },
+                        { text: "อยากใช้วิธีการแยบยลเพื่อให้อีกฝ่ายเรียนรู้", archetype: "magician", score: 3 },
+                        { text: "รู้สึกเจ็บใจมากกว่าโกรธ และอยากถอนตัว", archetype: "caregiver", score: 3 },
+                        { text: "รู้สึกหวั่นไหวและกลัวจะสูญเสียความสัมพันธ์", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "ความต้องการลึก",
+                    text: "ในส่วนลึกของใจ คุณปรารถนาอะไรมากที่สุด?",
+                    answers: [
+                        { text: "ความรู้ที่ไม่มีใครเข้าใจเท่า", archetype: "sage", score: 3 },
+                        { text: "พลังในการเปลี่ยนแปลงโลก", archetype: "magician", score: 3 },
+                        { text: "การเป็นที่พึ่งพาของทุกคน", archetype: "caregiver", score: 3 },
+                        { text: "ความรักที่สมบูรณ์แบบและไม่มีวันสิ้นสุด", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "ความหวาดกลัว",
+                    text: "ความกลัวที่ลึกที่สุดของคุณคือ?",
+                    answers: [
+                        { text: "การค้นพบว่าความจริงที่เชื่อมาแตกต่างจากความเป็นจริง", archetype: "sage", score: 3 },
+                        { text: "การไม่มีพลังเปลี่ยนแปลงสิ่งที่เห็นว่าผิด", archetype: "magician", score: 3 },
+                        { text: "การไม่สามารถปกป้องคนที่รักได้", archetype: "caregiver", score: 3 },
+                        { text: "การต้องใช้ชีวิตโดยไม่มีความรัก", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "พลังภายใน",
+                    text: "คุณรู้สึกว่าตัวเองมีพลังพิเศษด้านไหน?",
+                    answers: [
+                        { text: "การมองเห็นความจริงที่คนอื่นมองไม่เห็น", archetype: "sage", score: 3 },
+                        { text: "การเปลี่ยนแปลงสถานการณ์ด้วยความคิดสร้างสรรค์", archetype: "magician", score: 3 },
+                        { text: "การรักษาและดูแลผู้คนให้หายดี", archetype: "caregiver", score: 3 },
+                        { text: "การสร้างความสัมพันธ์ที่ลึกซึ้งกับผู้คน", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "การเสียสละ",
+                    text: "คุณยอมเสียสละอะไรได้มากที่สุดเพื่อสิ่งที่สำคัญ?",
+                    answers: [
+                        { text: "ความสุขส่วนตัวเพื่อการแสวงหาความรู้", archetype: "sage", score: 3 },
+                        { text: "ความปลอดภัยเพื่อการสร้างสรรค์สิ่งใหม่", archetype: "magician", score: 3 },
+                        { text: "ทุกสิ่งเพื่อความปลอดภัยของคนที่รัก", archetype: "caregiver", score: 3 },
+                        { text: "ทุกอย่างเพื่อไม่ให้สูญเสียความรัก", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "ความโดดเดี่ยว",
+                    text: "เมื่อรู้สึกโดดเดี่ยว คุณคิดว่าเป็นเพราะ?",
+                    answers: [
+                        { text: "คนอื่นไม่เข้าใจความคิดของคุณ", archetype: "sage", score: 3 },
+                        { text: "คุณแตกต่างจากคนทั่วไป", archetype: "magician", score: 3 },
+                        { text: "คุณให้ความรักมากเกินไป", archetype: "caregiver", score: 3 },
+                        { text: "คุณต้องการความรักมากเกินไป", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "อำนาจ",
+                    text: "หากมีอำนาจไม่จำกัด คุณจะทำอะไรก่อน?",
+                    answers: [
+                        { text: "เปิดเผยความจริงทั้งหมดให้โลกรู้", archetype: "sage", score: 3 },
+                        { text: "สร้างโลกใหม่ที่สมบูรณ์แบบ", archetype: "magician", score: 3 },
+                        { text: "ขจัดความทุกข์ทั้งหมดออกจากโลก", archetype: "caregiver", score: 3 },
+                        { text: "ทำให้ทุกคนมีความรักและความสุข", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "ความผิดหวัง",
+                    text: "ความผิดหวังที่ใหญ่ที่สุดในชีวิตคือ?",
+                    answers: [
+                        { text: "การค้นพบว่าคำตอบที่หาอยู่อาจไม่มีจริง", archetype: "sage", score: 3 },
+                        { text: "การที่ความฝันไม่สามารถเป็นจริงได้", archetype: "magician", score: 3 },
+                        { text: "การไม่สามารถช่วยคนที่สำคัญได้", archetype: "caregiver", score: 3 },
+                        { text: "การสูญเสียความรักที่แท้จริง", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "การเปลี่ยนแปลง",
+                    text: "การเปลี่ยนแปลงที่ยากที่สุดสำหรับคุณคือ?",
+                    answers: [
+                        { text: "การยอมรับว่าสิ่งที่เชื่อมาอาจผิด", archetype: "sage", score: 3 },
+                        { text: "การอยู่นิ่งโดยไม่ได้สร้างสรรค์อะไร", archetype: "magician", score: 3 },
+                        { text: "การหยุดดูแลคนอื่นและมาดูแลตัวเอง", archetype: "caregiver", score: 3 },
+                        { text: "การปล่อยวางความรักที่ไม่ได้ผล", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "มรดกตกทอด",
+                    text: "คุณอยากให้คนจดจำคุณในฐานะ?",
+                    answers: [
+                        { text: "ผู้ที่ค้นพบและแบ่งปันความรู้ที่สำคัญ", archetype: "sage", score: 3 },
+                        { text: "ผู้ที่สร้างสรรค์สิ่งใหม่ที่เปลี่ยนโลก", archetype: "magician", score: 3 },
+                        { text: "ผู้ที่อุทิศตนเพื่อผู้อื่นอย่างไม่เห็นแก่ตัว", archetype: "caregiver", score: 3 },
+                        { text: "ผู้ที่รักและถูกรักอย่างลึกซึ้ง", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "ความหมาย",
+                    text: "สิ่งใดให้ความหมายกับชีวิตคุณมากที่สุด?",
+                    answers: [
+                        { text: "การเข้าใจความลึกลับของจักรวาล", archetype: "sage", score: 3 },
+                        { text: "การสร้างผลงานที่ไม่มีใครเคยทำ", archetype: "magician", score: 3 },
+                        { text: "การเห็นคนที่ดูแลเติบโตและมีความสุข", archetype: "caregiver", score: 3 },
+                        { text: "การมีคนที่รักและเข้าใจกันอย่างลึกซึ้ง", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "วิกฤติการณ์",
+                    text: "ในช่วงวิกฤติที่สุดของชีวิต คุณพบว่าตัวเองเป็นอย่างไร?",
+                    answers: [
+                        { text: "มุ่งมั่นหาคำตอบและความเข้าใจมากขึ้น", archetype: "sage", score: 3 },
+                        { text: "พยายามสร้างสรรค์ทางออกใหม่", archetype: "magician", score: 3 },
+                        { text: "วางใจคนอื่นและขอความช่วยเหลือ", archetype: "caregiver", score: 3 },
+                        { text: "ยึดติดกับความรักและความสัมพันธ์", archetype: "lover", score: 3 }
+                    ]
+                },
+                {
+                    category: "จิตวิญญาณลึก",
+                    text: "ในส่วนลึกที่สุดของจิตวิญญาณ คุณเชื่อว่าอะไรคือสิ่งศักดิ์สิทธิ์ที่สุด?",
+                    answers: [
+                        { text: "ความจริงและการเรียนรู้", archetype: "sage", score: 3 },
+                        { text: "พลังแห่งการสร้างสรรค์และเปลี่ยนแปลง", archetype: "magician", score: 3 },
+                        { text: "ความเมตตาและการดูแลซึ่งกันและกัน", archetype: "caregiver", score: 3 },
+                        { text: "ความรักและการเชื่อมโยงระหว่างจิตวิญญาณ", archetype: "lover", score: 3 }
+                    ]
+                }
+            ],
+            extreme: [
+                {
+                    category: "ความมืดมิดภายใน",
+                    text: "ในจิตใจส่วนลึกที่สุด คุณซ่อนอะไรไว้?",
+                    answers: [
+                        { text: "ความหยิ่งที่คิดว่าตัวเองฉลาดกว่าคนอื่น", archetype: "sage", score: 4 },
+                        { text: "ความต้องการควบคุมทุกสิ่งรอบตัว", archetype: "magician", score: 4 },
+                        { text: "ความโกรธที่คนอื่นไม่ชื่นชมการเสียสละ", archetype: "caregiver", score: 4 },
+                        { text: "ความหึงหวงและต้องการครอบครองคนที่รัก", archetype: "lover", score: 4 }
+                    ]
+                },
+                {
+                    category: "ความโหดร้าย",
+                    text: "หากต้องเลือกระหว่างความจริงหรือความเมตตา คุณจะเลือกอะไร?",
+                    answers: [
+                        { text: "ความจริง แม้จะทำให้คนอื่นเจ็บปวด", archetype: "sage", score: 4 },
+                        { text: "การเปลี่ยนแปลงที่จำเป็น แม้จะมีคนต้องเสียสละ", archetype: "magician", score: 4 },
+                        { text: "ความเมตตา แม้จะต้องปกปิดความจริง", archetype: "caregiver", score: 4 },
+                        { text: "สิ่งที่ทำให้คนที่รักมีความสุข ไม่ว่าจะถูกหรือผิด", archetype: "lover", score: 4 }
+                    ]
+                },
+                {
+                    category: "การทรยศ",
+                    text: "สถานการณ์ใดที่คุณอาจทรยศคนอื่นได้?",
+                    answers: [
+                        { text: "เมื่อพวกเขาปกปิดความจริงที่สำคัญ", archetype: "sage", score: 4 },
+                        { text: "เมื่อพวกเขาขัดขวางการเปลี่ยนแปลงที่จำเป็น", archetype: "magician", score: 4 },
+                        { text: "เมื่อพวกเขาทำร้ายคนที่คุณปกป้อง", archetype: "caregiver", score: 4 },
+                        { text: "เมื่อพวกเขาคุกคามความรักของคุณ", archetype: "lover", score: 4 }
+                    ]
+                },
+                {
+                    category: "ความล้มเหลว",
+                    text: "ความล้มเหลวที่ทำลายจิตใจคุณมากที่สุดคือ?",
+                    answers: [
+                        { text: "การค้นพบว่าความรู้ที่ภาคภูมิใจเป็นเพียงภาพลวงตา", archetype: "sage", score: 4 },
+                        { text: "การที่ผลงานถูกทำลายหรือไม่มีใครเข้าใจ", archetype: "magician", score: 4 },
+                        { text: "การที่คนที่ดูแลกลับมาทำร้ายคุณ", archetype: "caregiver", score: 4 },
+                        { text: "การถูกคนรักหักหลังหรือทอดทิ้ง", archetype: "lover", score: 4 }
+                    ]
+                },
+                {
+                    category: "อำนาจเบื้องต้น",
+                    text: "หากมีพลังลึกลับ คุณจะใช้เพื่ออะไรก่อน?",
+                    answers: [
+                        { text: "อ่านใจคนเพื่อรู้ความจริงที่พวกเขาซ่อน", archetype: "sage", score: 4 },
+                        { text: "เปลี่ยนแปลงความเป็นจริงตามต้องการ", archetype: "magician", score: 4 },
+                        { text: "รักษาและปกป้องคนที่รักให้ปลอดภัย", archetype: "caregiver", score: 4 },
+                        { text: "ทำให้คนที่รักกลับมารักคุณอีกครั้ง", archetype: "lover", score: 4 }
+                    ]
+                },
+                {
+                    category: "การสูญเสีย",
+                    text: "การสูญเสียใดที่จะทำให้คุณเสียสติ?",
+                    answers: [
+                        { text: "การสูญเสียความสามารถในการคิดและเรียนรู้", archetype: "sage", score: 4 },
+                        { text: "การสูญเสียความสามารถในการสร้างสรรค์", archetype: "magician", score: 4 },
+                        { text: "การสูญเสียคนที่คุณอุทิศชีวิตเพื่อปกป้อง", archetype: "caregiver", score: 4 },
+                        { text: "การสูญเสียความสามารถในการรักและถูกรัก", archetype: "lover", score: 4 }
+                    ]
+                },
+                {
+                    category: "การแก้แค้น",
+                    text: "วิธีการแก้แค้นที่รุนแรงที่สุดที่คุณคิดได้คือ?",
+                    answers: [
+                        { text: "เปิดเผยความลับที่จะทำลายชื่อเสียงของเขา", archetype: "sage", score: 4 },
+                        { text: "ใช้ความสามารถทำลายทุกสิ่งที่เขาสร้างมา", archetype: "magician", score: 4 },
+                        { text: "ทำให้เขาเสียคนที่รักเหมือนที่เขาทำกับคุณ", archetype: "caregiver", score: 4 },
+                        { text: "ทำให้เขารู้สึกโดดเดี่ยวและไม่มีใครรัก", archetype: "lover", score: 4 }
+                    ]
+                },
+                {
+                    category: "ความหมดหวัง",
+                    text: "ในช่วงที่หมดหวังที่สุด คุณเคยคิดอะไร?",
+                    answers: [
+                        { text: "ว่าความจริงอาจไม่มีความหมายอะไรเลย", archetype: "sage", score: 4 },
+                        { text: "ว่าการสร้างสรรค์อาจเป็นเพียงการหลอกตัวเอง", archetype: "magician", score: 4 },
+                        { text: "ว่าการดูแลคนอื่นอาจเป็นการเสียเวลา", archetype: "caregiver", score: 4 },
+                        { text: "ว่าความรักอาจเป็นเพียงภาพลวงตา", archetype: "lover", score: 4 }
+                    ]
+                },
+                {
+                    category: "การครอบงำ",
+                    text: "สิ่งใดที่ครอบงำความคิดคุณมากที่สุดในยามเศร้า?",
+                    answers: [
+                        { text: "ความกลัวว่าจะไม่มีวันรู้ความจริงทั้งหมด", archetype: "sage", score: 4 },
+                        { text: "ความรู้สึกว่าไม่มีอำนาจเปลี่ยนแปลงอะไร", archetype: "magician", score: 4 },
+                        { text: "ความผิดที่ไม่สามารถช่วยทุกคนได้", archetype: "caregiver", score: 4 },
+                        { text: "ความเหงาและการปรารถนาคนที่ไม่ได้", archetype: "lover", score: 4 }
+                    ]
+                },
+                {
+                    category: "ความบริสุทธิ์",
+                    text: "สิ่งใดที่จะทำให้คุณยอมสูญเสียความบริสุทธิ์ใจ?",
+                    answers: [
+                        { text: "การได้ความรู้ที่ต้องห้าม", archetype: "sage", score: 4 },
+                        { text: "การมีพลังที่สามารถเปลี่ยนแปลงโลกได้", archetype: "magician", score: 4 },
+                        { text: "การปกป้องคนที่รักจากอันตราย", archetype: "caregiver", score: 4 },
+                        { text: "การได้รับความรักที่แท้จริงและสมบูรณ์", archetype: "lover", score: 4 }
+                    ]
+                },
+                {
+                    category: "จุดจบของโลก",
+                    text: "หากโลกกำลังจะสิ้นสุด คุณจะใช้เวลาสุดท้ายทำอะไร?",
+                    answers: [
+                        { text: "ค้นหาคำตอบสุดท้ายของทุกสิ่ง", archetype: "sage", score: 4 },
+                        { text: "พยายามเปลี่ยนแปลงชะตากรรมนี้", archetype: "magician", score: 4 },
+                        { text: "อยู่เคียงข้างและปลอบใจคนที่รัก", archetype: "caregiver", score: 4 },
+                        { text: "อยู่กับคนที่รักและบอกรักครั้งสุดท้าย", archetype: "lover", score: 4 }
+                    ]
+                },
+                {
+                    category: "ความเป็นเซียน",
+                    text: "หากต้องเลือกระหว่างความเป็นอมตะกับความเป็นมนุษย์ คุณจะเลือกอะไร?",
+                    answers: [
+                        { text: "อมตะ เพื่อได้เรียนรู้ความจริงทั้งหมด", archetype: "sage", score: 4 },
+                        { text: "อมตะ เพื่อได้สร้างสรรค์โดยไม่มีข้อจำกัด", archetype: "magician", score: 4 },
+                        { text: "มนุษย์ เพราะความตายทำให้ชีวิตมีความหมาย", archetype: "caregiver", score: 4 },
+                        { text: "มนุษย์ เพราะความรักมีความหมายเมื่อมีเวลาจำกัด", archetype: "lover", score: 4 }
+                    ]
+                },
+                {
+                    category: "การเสียสละสุดขั้ว",
+                    text: "สิ่งสุดท้ายที่คุณจะยอมสูญเสียเพื่อสิ่งที่สำคัญที่สุดคือ?",
+                    answers: [
+                        { text: "ความเป็นมนุษย์ เพื่อกลายเป็นความรู้บริสุทธิ์", archetype: "sage", score: 4 },
+                        { text: "ตัวตนเดิม เพื่อกลายเป็นพลังแห่งการเปลี่ยนแปลง", archetype: "magician", score: 4 },
+                        { text: "ชีวิตตัวเอง เพื่อให้คนที่รักมีชีวิตต่อไป", archetype: "caregiver", score: 4 },
+                        { text: "ทุกสิ่งทุกอย่าง เพื่อไม่ให้สูญเสียความรัก", archetype: "lover", score: 4 }
+                    ]
+                },
+                {
+                    category: "การกลับชาติมาเกิด",
+                    text: "หากมีชาติหน้า คุณอยากเกิดมาเป็นอะไร?",
+                    answers: [
+                        { text: "ปราชญ์ที่รู้ความลับทั้งหมดของจักรวาล", archetype: "sage", score: 4 },
+                        { text: "ผู้สร้างที่มีพลังเปลี่ยนแปลงความเป็นจริงได้", archetype: "magician", score: 4 },
+                        { text: "ผู้ปกป้องที่สามารถช่วยทุกชีวิตได้", archetype: "caregiver", score: 4 },
+                        { text: "ผู้รักที่สามารถรักและถูกรักอย่างสมบูรณ์", archetype: "lover", score: 4 }
+                    ]
+                },
+                {
+                    category: "ความหมายสุดท้าย",
+                    text: "เมื่อทุกอย่างสิ้นสุดลง สิ่งใดจะพิสูจน์ว่าคุณมีชีวิตอยู่อย่างมีความหมาย?",
+                    answers: [
+                        { text: "ความรู้ที่ค้นพบและถ่ายทอดให้โลก", archetype: "sage", score: 4 },
+                        { text: "การเปลี่ยนแปลงที่สร้างขึ้นและคงอยู่ต่อไป", archetype: "magician", score: 4 },
+                        { text: "ชีวิตที่ช่วยเหลือและความทรงจำดีที่ฝากไว้", archetype: "caregiver", score: 4 },
+                        { text: "ความรักที่แท้จริงและความสัมพันธ์ที่สร้างขึ้น", archetype: "lover", score: 4 }
+                    ]
+                }
+            ]
+        };
+
+
+        // Archetype definitions with updated content
+        const archetypes = {
+            sage: {
+                icon: "🧙‍♂️",
+                title: "The Sage",
+                subtitle: "นักปราชญ์แห่งความจริง",
+                description: "คุณคือผู้แสวงหาความรู้และความจริง มีความต้องการเข้าใจโลกในระดับลึก คุณมักใช้ปัญญาและการวิเคราะห์ในการตัดสินใจ และมีความสามารถในการมองเห็นความจริงที่คนอื่นมองไม่เห็น แต่อาจมีจุดอ่อนในการหยิ่งทางปัญญาและมองคนอื่นเป็นเด็ก",
+                analysis: [
+                    {
+                        title: "🧠 ลักษณะทางจิตวิทยา",
+                        content: "มีแรงขับเคลื่อนในการแสวงหาความรู้และความเข้าใจอย่างลึกซึ้ง ชอบการวิเคราะห์และใช้เหตุผล มักมีมุมมองที่กว้างไกลและลึกซึ้ง มีความอยากรู้อยากเห็นสูงและไม่พอใจกับคำตอบผิวเผิน"
+                    },
+                    {
+                        title: "💪 จุดแข็ง",
+                        content: "ปัญญาดี มีวิจารณญาณ สามารถให้คำแนะนำที่มีคุณค่า มองเห็นรูปแบบและความเชื่อมโยงที่ซับซ้อน เป็นแหล่งความรู้ที่เชื่อถือได้ มีความสามารถในการแก้ปัญหาที่ซับซ้อน"
+                    },
+                    {
+                        title: "⚠️ จุดอ่อน",
+                        content: "อาจหยิ่งทางปัญญา วิเคราะห์มากเกินไปจนขาดการลงมือทำ มองคนอื่นว่าโง่ อาจขาดความเข้าใจด้านอารมณ์ และติดกับทฤษฎีมากจนลืมความเป็นจริง"
+                    },
+                    {
+                        title: "🎯 คำแนะนำ",
+                        content: "เรียนรู้ที่จะใช้หัวใจร่วมกับสมอง พัฒนาความเข้าใจด้านอารมณ์ หลีกเลี่ยงการดูถูกคนอื่น แบ่งปันความรู้อย่างอ่อนน้อมถ่อมตน และลงมือปฏิบัติควบคู่กับการคิด"
+                    }
+                ]
+            },
+            magician: {
+                icon: "🔮",
+                title: "The Magician",
+                subtitle: "ผู้สร้างสรรค์และเปลี่ยนแปลง",
+                description: "คุณคือผู้ที่มีพลังในการเปลี่ยนแปลงและสร้างสรรค์ มีวิสัยทัศน์ในการมองเห็นสิ่งที่เป็นไปได้ และความสามารถในการทำให้ความฝันกลายเป็นจริง คุณชอบความท้าทายและการทดลองสิ่งใหม่ๆ แต่อาจมีความเสี่ยงในการใช้พลังในทางที่ผิด",
+                analysis: [
+                    {
+                        title: "🧠 ลักษณะทางจิตวิทยา",
+                        content: "มีพลังสร้างสรรค์สูง ชอบการทดลองและนวัตกรรม มีความเชื่อมั่นในตนเองและความสามารถ มองเห็นโอกาสและความเป็นไปได้ มีจินตนาการที่กว้างไกล"
+                    },
+                    {
+                        title: "💪 จุดแข็ง",
+                        content: "มีวิสัยทัศน์ สร้างสรรค์ สามารถเปลี่ยนแปลงสถานการณ์ เป็นผู้นำการเปลี่ยนแปลง มีพลังบันดาลใจให้คนอื่น กล้าเสี่ยงและลองสิ่งใหม่"
+                    },
+                    {
+                        title: "⚠️ จุดอ่อน",
+                        content: "อาจใช้พลังในทางที่ผิด ขาดความอดทน ชอบควบคุม อาจละเลยรายละเอียด มีแนวโน้มเป็นนักเล่นการเมือง และอาจมองข้ามผลกระทบต่อผู้อื่น"
+                    },
+                    {
+                        title: "🎯 คำแนะนำ",
+                        content: "ใช้พลังอย่างมีจริยธรรม พัฒนาความอดทนและการฟังคนอื่น หลีกเลี่ยงการควบคุม ใส่ใจรายละเอียด และคำนึงถึงผลกระทบต่อผู้อื่น"
+                    }
+                ]
+            },
+            caregiver: {
+                icon: "🤗",
+                title: "The Caregiver",
+                subtitle: "ผู้ดูแลและเมตตา",
+                description: "คุณคือผู้ที่มีความเมตตาและรักการดูแลคนอื่น มีความต้องการช่วยเหลือและปกป้องคนที่อ่อนแอ คุณมักจะใส่ใจความต้องการของคนอื่นมากกว่าตัวเอง และพร้อมเสียสละเพื่อความสุขของคนที่รัก แต่อาจมีปัญหาในการดูแลตัวเอง",
+                analysis: [
+                    {
+                        title: "🧠 ลักษณะทางจิตวิทยา",
+                        content: "มีความเอาใจใส่และห่วงใยคนอื่นสูง มีแรงจูงใจในการช่วยเหลือ มีความเข้าใจด้านอารมณ์ดี รู้สึกมีคุณค่าเมื่อได้ช่วยคนอื่น มีสัญชาตญาณในการดูแล"
+                    },
+                    {
+                        title: "💪 จุดแข็ง",
+                        content: "มีความเมตตา เข้าใจความรู้สึกคนอื่น เป็นที่พึ่งพาได้ มีทักษะการดูแล สร้างสัมพันธภาพที่ลึกซึ้ง มีความอดทนและความเข้าใจ"
+                    },
+                    {
+                        title: "⚠️ จุดอ่อน",
+                        content: "ละเลยตัวเอง ให้คนอื่นพึ่งพาจนเกินไป อาจถูกเอาเปรียบ มีแนวโน้มเป็น Codependent รู้สึกผิดเมื่อไม่ช่วยคนอื่น และอาจหมดไฟในการดูแล"
+                    },
+                    {
+                        title: "🎯 คำแนะนำ",
+                        content: "เรียนรู้การดูแลตัวเอง ตั้งขอบเขตที่ชัดเจน หลีกเลี่ยงการให้ช่วยเหลือจนเกินไป ยอมรับว่าทุกคนต้องรับผิดชอบตัวเอง และพัฒนาความแข็งแกร่งภายใน"
+                    }
+                ]
+            },
+            lover: {
+                icon: "💕",
+                title: "The Lover",
+                subtitle: "ผู้รักและผู้แสวงหาความสัมพันธ์",
+                description: "คุณคือผู้ที่มีความต้องการรักและความสัมพันธ์อย่างลึกซึ้ง มุ่งมั่นในการสร้างความผูกพันและความเชื่อมโยงกับคนอื่น คุณมีความอ่อนไหวทางอารมณ์สูงและให้ความสำคัญกับความรัก ความงาม และประสบการณ์ทางประสาทสัมผัส",
+                analysis: [
+                    {
+                        title: "🧠 ลักษณะทางจิตวิทยา",
+                        content: "มีความต้องการความใกล้ชิดและการเชื่อมโยงสูง อ่อนไหวต่อความงามและประสบการณ์ มีอารมณ์ความรู้สึกที่ลึกซึ้ง ชื่นชมความสัมพันธ์ที่มีความหมาย"
+                    },
+                    {
+                        title: "💪 จุดแข็ง",
+                        content: "มีความรักและความเมตตา เข้าใจด้านอารมณ์ สร้างสัมพันธภาพที่ลึกซึ้ง มีความซื่อสัตย์ ชื่นชมความงาม มีความอ่อนไหวต่อผู้อื่น"
+                    },
+                    {
+                        title: "⚠️ จุดอ่อน",
+                        content: "พึ่งพาคนอื่นมากเกินไป หึงหวงง่าย กลัวการถูกทอดทิ้ง อาจสูญเสียตัวตนในความสัมพันธ์ ตัดสินใจด้วยอารมณ์ และอาจรักจนตาบอด"
+                    },
+                    {
+                        title: "🎯 คำแนะนำ",
+                        content: "พัฒนาความเป็นอิสระ เรียนรู้การรักตัวเอง สร้างขอบเขตในความสัมพันธ์ ฝึกการตัดสินใจด้วยเหตุผล และเรียนรู้ที่จะอยู่คนเดียวได้"
+                    }
+                ]
+            }
+        };
+
+
+        // Quiz State
+        let currentLevel = '';
+        let currentQuestionIndex = 0;
+        let currentQuestions = [];
+        let userAnswers = [];
+        let archetypeScores = {
+            sage: 0,
+            magician: 0,
+            caregiver: 0,
+            lover: 0
+        };
+
+
+        // Initialize the app
+        function initializeApp() {
+            createMysteriousParticles();
+            setupEventListeners();
+        }
+
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Intensity level selection
+            document.querySelectorAll('.intensity-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    document.querySelectorAll('.intensity-card').forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                    currentLevel = this.dataset.level;
+                    document.getElementById('startTestBtn').disabled = false;
+                });
+            });
+
+
+            // Start test button
+            document.getElementById('startTestBtn').addEventListener('click', startTest);
+
+
+            // Navigation buttons
+            document.getElementById('prevBtn').addEventListener('click', previousQuestion);
+            document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+
+
+            // Retake button
+            document.getElementById('retakeBtn').addEventListener('click', resetTest);
+        }
+
+
+        // Start the test
+        function startTest() {
+            if (!currentLevel) return;
+
+
+            // Hide start section, show quiz section
+            document.getElementById('startSection').style.display = 'none';
+            document.getElementById('quizSection').style.display = 'block';
+
+
+            // Initialize quiz with fresh question set (deep copy to avoid reference issues)
+            currentQuestions = JSON.parse(JSON.stringify(questionSets[currentLevel]));
+            
+            // Clear any existing shuffled orders
+            currentQuestions.forEach(question => {
+                delete question.shuffledOrder;
+            });
+            
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            archetypeScores = {
+                sage: 0,
+                magician: 0,
+                caregiver: 0,
+                lover: 0
+            };
+
+
+            displayQuestion();
+        }
+
+
+        // Shuffle array function using Fisher-Yates algorithm
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+
+        // Display current question
+        function displayQuestion() {
+            const question = currentQuestions[currentQuestionIndex];
+            
+            document.getElementById('progressText').textContent = `การเจาะลึก ${currentQuestionIndex + 1} จาก ${currentQuestions.length}`;
+            document.getElementById('progressBar').style.width = `${((currentQuestionIndex + 1) / currentQuestions.length) * 100}%`;
+            
+            document.getElementById('questionCategory').textContent = question.category;
+            document.getElementById('questionNumber').textContent = `การเจาะลึกที่ ${currentQuestionIndex + 1}`;
+            document.getElementById('questionText').textContent = question.text;
+
+
+            // Create answer options with shuffled order
+            const answersGrid = document.getElementById('answersGrid');
+            answersGrid.innerHTML = '';
+
+
+            // Create shuffled answers with original indices
+            const answersWithIndices = question.answers.map((answer, index) => ({
+                ...answer,
+                originalIndex: index
+            }));
+
+
+            // Check if this question already has a shuffled order stored
+            if (!question.shuffledOrder) {
+                question.shuffledOrder = shuffleArray(answersWithIndices);
+            }
+
+
+            question.shuffledOrder.forEach((answer, displayIndex) => {
+                const answerDiv = document.createElement('div');
+                answerDiv.className = 'answer-option';
+                answerDiv.textContent = answer.text;
+                answerDiv.dataset.originalIndex = answer.originalIndex;
+                answerDiv.dataset.displayIndex = displayIndex;
+
+
+                // Check if this answer was previously selected
+                if (userAnswers[currentQuestionIndex] === answer.originalIndex) {
+                    answerDiv.classList.add('selected');
+                    document.getElementById('nextBtn').disabled = false;
+                }
+
+
+                answerDiv.addEventListener('click', function() {
+                    // Remove selection from other answers
+                    document.querySelectorAll('.answer-option').forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Select this answer
+                    this.classList.add('selected');
+                    
+                    // Store the original answer index (not display index)
+                    userAnswers[currentQuestionIndex] = parseInt(this.dataset.originalIndex);
+                    
+                    // Enable next button
+                    document.getElementById('nextBtn').disabled = false;
+                });
+
+
+                answersGrid.appendChild(answerDiv);
+            });
+
+
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
+            
+            if (userAnswers[currentQuestionIndex] === undefined) {
+                document.getElementById('nextBtn').disabled = true;
+            }
+            
+            if (currentQuestionIndex === currentQuestions.length - 1) {
+                document.getElementById('nextBtn').textContent = 'ดูผลลัพธ์ 🔮';
+            } else {
+                document.getElementById('nextBtn').textContent = 'ลึกต่อไป →';
+            }
+        }
+
+
+        // Previous question
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        }
+
+
+        // Next question
+        function nextQuestion() {
+            if (userAnswers[currentQuestionIndex] === undefined) return;
+
+
+            if (currentQuestionIndex < currentQuestions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            } else {
+                // Calculate and show results
+                calculateResults();
+                showResults();
+            }
+        }
+
+
+        // Calculate results
+        function calculateResults() {
+            // Reset scores
+            archetypeScores = {
+                sage: 0,
+                magician: 0,
+                caregiver: 0,
+                lover: 0
+            };
+
+
+            userAnswers.forEach((answerIndex, questionIndex) => {
+                const question = currentQuestions[questionIndex];
+                const selectedAnswer = question.answers[answerIndex];
+                archetypeScores[selectedAnswer.archetype] += selectedAnswer.score;
+            });
+        }
+
+
+        // Show results
+        function showResults() {
+            // Hide quiz section, show results section
+            document.getElementById('quizSection').style.display = 'none';
+            document.getElementById('resultsSection').style.display = 'block';
+
+
+            // Find dominant archetype
+            let dominantArchetype = '';
+            let maxScore = 0;
+            
+            for (const [archetype, score] of Object.entries(archetypeScores)) {
+                if (score > maxScore) {
+                    maxScore = score;
+                    dominantArchetype = archetype;
+                }
+            }
+
+
+            // Display archetype information
+            const archetypeData = archetypes[dominantArchetype];
+            document.getElementById('archetypeIcon').textContent = archetypeData.icon;
+            document.getElementById('archetypeTitle').textContent = archetypeData.title;
+            document.getElementById('archetypeSubtitle').textContent = archetypeData.subtitle;
+            document.getElementById('archetypeDescription').textContent = archetypeData.description;
+
+
+            // Display psychological analysis
+            const analysisGrid = document.getElementById('analysisGrid');
+            analysisGrid.innerHTML = '';
+
+
+            archetypeData.analysis.forEach(analysis => {
+                const analysisCard = document.createElement('div');
+                analysisCard.className = 'analysis-card';
+                
+                analysisCard.innerHTML = `
+                    <div class="analysis-title">${analysis.title}</div>
+                    <div class="analysis-content">${analysis.content}</div>
+                `;
+                
+                analysisGrid.appendChild(analysisCard);
+            });
+        }
+
+
+        // Reset test
+        function resetTest() {
+            // Reset all states
+            currentLevel = '';
+            currentQuestionIndex = 0;
+            currentQuestions = [];
+            userAnswers = [];
+            archetypeScores = {
+                sage: 0,
+                magician: 0,
+                caregiver: 0,
+                lover: 0
+            };
+
+
+            // Reset UI
+            document.querySelectorAll('.intensity-card').forEach(card => card.classList.remove('selected'));
+            document.getElementById('startTestBtn').disabled = true;
+
+
+            // Show start section, hide others
+            document.getElementById('startSection').style.display = 'block';
+            document.getElementById('quizSection').style.display = 'none';
+            document.getElementById('resultsSection').style.display = 'none';
+            
+            // Reset next button text
+            document.getElementById('nextBtn').textContent = 'ลึกต่อไป →';
+        }
+
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initializeApp);
+    </script>
+
+<script>
+    window.addEventListener('load', () => {
+        const observer = new MutationObserver(() => {
+            document.querySelectorAll('*').forEach(el => {
+                if (el.innerText && el.innerText.toLowerCase().includes("made with claude")) {
+                    el.remove();
+                }
+            });
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    });
+</script>
+
+</body>
+</html>
